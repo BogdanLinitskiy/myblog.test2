@@ -7,7 +7,9 @@
         <div class="col-md-4">
             <h2>{{ $post['title'] }}</h2>
             <p> {{ $post['intro'] }} </p>
-            <p><a class="btn btn-secondary" href="/posts/{{ $post['id'] }}" role="button">View details »</a></p>
+            <p><a class="btn btn-primary" href="/posts/{{ $post['id'] }}" role="button">View details »</a></p>
+            <p><a class="btn btn-success" href="/posts/{{ $post['id'] }}/edit" role="button">Edit »</a></p>
+            <p><a class="btn btn-danger" href="/posts/{{ $post['id'] }}/delete" role="button">Delete »</a></p>
         </div>
 
     @endforeach

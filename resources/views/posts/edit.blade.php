@@ -4,7 +4,7 @@
 
     <div class="col-md-12">
 
-        <form action="/posts" method="post" class="form-horizontal">
+        <form action="/posts/{{$post['id']}}" method="post" class="form-horizontal">
 
             @include('embed.errors')
 
@@ -13,26 +13,26 @@
             <div class="form-group">
 
                 <label for="title" >Title: </label>
-                <input type ="text" class="form-control" id="title" name="title">
+                <input  type ="text" class="form-control" id="title" name="title" value="{{$post['title']}}">
 
             </div>
 
             <div class="form-group">
 
                 <label for="intro" >Intro: </label>
-                <textarea  name="intro" id="intro" class="form-control"></textarea>
+                <textarea  name="intro" id="intro" class="form-control">{{$post['intro']}}</textarea>
 
             </div>
 
             <div class="form-group">
 
                 <label for="body" >Body: </label>
-                <textarea  name="body" id="body" class="form-control"></textarea>
+                <textarea name="body" id="body" class="form-control">{{$post['body']}}</textarea>
 
             </div>
 
             <div class="form-group">
-                <button class="btn btn-default">Save</button>
+                <button class="btn btn-default">Update</button>
             </div>
 
         </form>
