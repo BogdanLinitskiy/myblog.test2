@@ -13,13 +13,31 @@
 
 Route::get('/','HomeController@home');
 
-Route::get('/posts/create','PostsController@create');
-Route::get('/posts/{id}','PostsController@show');
-Route::post('/posts/','PostsController@store');
+//Route::get('/posts/create','PostsController@create');
+//Route::get('/posts/{post}','PostsController@show');
+//Route::post('/posts/','PostsController@store');
+//
+////Route::('posts/{post}/destroy,@PostsController@destroy);
+//Route::delete('/posts/{post}','PostsController@destroy');
+//
+//Route::get('posts/{post}/edit', 'PostsController@edit');
+Route::get('/posts/{post}/delete','PostsController@delete');
 
-Route::get('posts/{id}/edit', 'PostsController@edit');
-Route::post('posts/{id}','PostsController@update');
+//Route::patch('posts/{post}','PostsController@update');
 
-Route::get('/posts/{id}/delete','PostsController@delete');
-Route::post('/posts/{id}/destroy','PostsController@destroy');
+Route::resources([
+	'categories' => 'CategoriesController',
+	'posts' => 'PostsController'
+]);
 
+
+
+/*
+ * [GET] / posts - all entries
+ * [GET] /posts/{post} - entry
+ * [POST] /posts - create entry
+ * [PUT/PATCH] /posts/{post} - update entry
+ * [DELETE] /posts/{post} - delete entry
+ *
+ *
+ * */

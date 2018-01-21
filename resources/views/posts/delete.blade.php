@@ -4,11 +4,13 @@
 
     <div class="col-md-12">
 
-        <form action="/posts/{{$post['id']}}/destroy" method="post" class="form-horizontal">
+        <form action="/posts/{{$post['slug']}}" method="post" class="form-horizontal">
 
             @include('embed.errors')
 
             {{csrf_field()}}
+
+            <input type="hidden" name="_method" value="DELETE">
 
             <div class="form-group">
                 <h3>Are you sure you want to delete {{$post->title}} ?</h3>

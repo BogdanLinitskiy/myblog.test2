@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-	public function show($id){
-		$data['post'] = Post::find($id);
-		return view('posts.show',$data);
+	public function show(Post $post){
+		return view('posts.show',compact('post'));
 	}
 
 	public function create(){
@@ -20,6 +19,7 @@ class PostsController extends Controller
 		//validate
 		$this->validate(request(),[
 			'title' => 'required|min:4|unique:posts,title',
+			'slug' => 'required|min:2|max:20|unique:posts,slug',
 			'intro' => 'required|min:10|max:50',
 			'body' => 'required|min:20|'
 		]);
@@ -28,7 +28,7 @@ class PostsController extends Controller
 //		dd(request(['title','intro']));
 //		dd(request()->all());
 
-		Post::create(request(['title','intro','body']));
+		Post::create(request(['title','slug','intro','body']));
 
 //		Post::create(request()->all());
 
@@ -42,19 +42,19 @@ class PostsController extends Controller
 		return redirect('/');
 	}
 
-	public function edit($id){
-		$data['post'] = Post::find($id);
-		return view('posts.edit',$data);
+	public function edit(Post $post){
+//				$post = Post::find($id);
+		return view('posts.edit',compact('post'));
 	}
-	public function update($id){
+	public function update(Post $post){
 		$this->validate(request(),[
-			'title' => 'required|min:4',
+			'title' => 'required|min:4|unique:posts,title,' . $post->id,
+			'slug' => 'required|min:2|max:20|unique:posts,slug,' . $post->id,
 			'intro' => 'required|min:10|max:50',
 			'body' => 'required|min:20|'
 		]);
 
-		$post =Post::find($id);
-		$post->update(request(['title','intro','body']));
+		$post->update(request(['title','slug','intro','body']));
 
 //		$post->title = request('title');
 //		$post->intro = request('intro');
@@ -64,14 +64,13 @@ class PostsController extends Controller
 		return redirect('/');
 	}
 
-	public function delete($id){
-		$data['post'] = Post::find($id);
-		return view('posts.delete',$data);
+	public function delete(Post $post){
+//				$post = Post::find($id);
+		return view('posts.delete',compact('post'));
 	}
 
-	public function destroy($id){
-		$post = Post::find($id);
-		$post->delete($id);
+	public function destroy(Post $post){
+		$post->delete();
 		return redirect('/');
 	}
 }
