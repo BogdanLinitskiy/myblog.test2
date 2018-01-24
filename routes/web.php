@@ -30,6 +30,7 @@ Route::resources([
 	'posts' => 'PostsController'
 ]);
 
+Route::post('/posts/{post}/comments','CommentsController@store');
 
 
 /*

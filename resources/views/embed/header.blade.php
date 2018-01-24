@@ -12,7 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/posts/create">Add Blog Post</a>
             </li>
-
         </ul>
     </div>
 </nav>

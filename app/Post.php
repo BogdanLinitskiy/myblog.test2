@@ -15,5 +15,10 @@ class Post extends Model
 		return 'slug';
 	}
 
+	public function comments(){
+		return $this->hasMany(Comment::class);
+//		return $this->hasMany(Comment::class,'post_id','id');
+	}
+
 //	protected $guarded = ['id'];
 }
