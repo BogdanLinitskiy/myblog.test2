@@ -17,7 +17,7 @@ Route::get('/','HomeController@home');
 //Route::get('/posts/{post}','PostsController@show');
 //Route::post('/posts/','PostsController@store');
 //
-////Route::('posts/{post}/destroy,@PostsController@destroy);
+//Route::('posts/{post}/destroy,@PostsController@destroy);
 //Route::delete('/posts/{post}','PostsController@destroy');
 //
 //Route::get('posts/{post}/edit', 'PostsController@edit');
@@ -32,6 +32,13 @@ Route::resources([
 
 Route::post('/posts/{post}/comments','CommentsController@store');
 
+Route::get('/login','SessionsController@create')->name('login');
+Route::post('/sessions','SessionsController@store');
+
+Route::get('/logout','SessionsController@destroy');
+
+Route::get('/register','RegistrationController@create');
+Route::post('/register','RegistrationController@store');
 
 /*
  * [GET] / posts - all entries

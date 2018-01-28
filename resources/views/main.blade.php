@@ -8,8 +8,10 @@
             <h2>{{ $post['title'] }}</h2>
             <p> {{ $post['intro'] }} </p>
             <p><a class="btn btn-primary" href="/posts/{{ $post['slug'] }}" role="button">View details »</a></p>
+            @if(Auth::check())
             <p><a class="btn btn-success" href="/posts/{{ $post['slug'] }}/edit" role="button">Edit »</a></p>
             <p><a class="btn btn-danger" href="/posts/{{ $post['slug'] }}/delete" role="button">Delete »</a></p>
+            @endif
         </div>
 
     @endforeach
