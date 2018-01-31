@@ -25,9 +25,11 @@ Route::get('/posts/{post}/delete','PostsController@delete');
 
 //Route::patch('posts/{post}','PostsController@update');
 
+
 Route::resources([
 	'categories' => 'CategoriesController',
-	'posts' => 'PostsController'
+	'posts' => 'PostsController',
+	'products' => 'ProductsController'
 ]);
 
 Route::post('/posts/{post}/comments','CommentsController@store');

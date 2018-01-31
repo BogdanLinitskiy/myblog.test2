@@ -14,6 +14,14 @@
                 <a class="nav-link" href="/posts/create">Add Blog Post</a>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="/products">Index page</a>
+                    <a class="dropdown-item" href="/products/create">Create</a>
+                </div>
+            </li>
+
             @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{Auth::user()->name}}</a>
