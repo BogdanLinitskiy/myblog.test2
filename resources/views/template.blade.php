@@ -38,7 +38,7 @@
 </main>
 
 <footer class="container">
-    <p>© Company 2018</p>
+    <p>© Bogdan Linitskiy 2018</p>
 </footer>
 
 <!-- Bootstrap core JavaScript

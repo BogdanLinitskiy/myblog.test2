@@ -42,6 +42,13 @@ Route::get('/logout','SessionsController@destroy');
 Route::get('/register','RegistrationController@create');
 Route::post('/register','RegistrationController@store');
 
+Route::get('/cart/{product}','CartController@store');
+
+Route::get('/order','OrderController@create');
+Route::post('/order','OrderController@store');
+
+
+Route::get('/admin','Admin\IndexController@index');
 /*
  * [GET] / posts - all entries
  * [GET] /posts/{post} - entry

@@ -22,6 +22,10 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/order">Order</a>
+            </li>
+
             @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{Auth::user()->name}}</a>
@@ -31,6 +35,7 @@
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
             @else
+
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
