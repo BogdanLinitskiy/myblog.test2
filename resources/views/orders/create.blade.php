@@ -14,7 +14,8 @@
                     @foreach($products as $product)
                         <li>
                             <strong>{{$product->title}}</strong>
-                            x {{$cart[$product->id]}} : {{$product->price * $cart[$product->id]}}$
+                            x {{$cart[$product->id]['amount']}}
+                            : {{$cart[$product->id]['totalPrice']}}$
                         </li>
                     @endforeach
                 </ul>

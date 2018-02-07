@@ -42,13 +42,17 @@ Route::get('/logout','SessionsController@destroy');
 Route::get('/register','RegistrationController@create');
 Route::post('/register','RegistrationController@store');
 
+Route::get('/cart','CartController@index');
 Route::get('/cart/{product}','CartController@store');
+Route::get('/cart/{product}/remove','CartController@remove');
+Route::get('/cart/{product}/destroy','CartController@destroy');
 
 Route::get('/order','OrderController@create');
 Route::post('/order','OrderController@store');
-
+Route::delete('/order/{order}/{product}','Admin\OrdersController@destroyProduct');
 
 Route::get('/admin','Admin\IndexController@index');
+
 /*
  * [GET] / posts - all entries
  * [GET] /posts/{post} - entry

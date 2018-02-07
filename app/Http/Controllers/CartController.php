@@ -2,25 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+	public function index()
+	{
+		$cart = Cart::getCartArray();
+		if(count($cart)<1){
+			return redirect('/products');
+		}
+		$products = Cart::getCartProducts($cart);
+		return view('cart.index',compact('cart','products'));
+	}
+
     public function store(Product $product)
     {
-    	$cart = [];
-
-    	if(request()->cookie('cart')){
-    		$cart = json_decode(request()->cookie('cart'),true);
-	    }
-
-	    if(isset($cart[$product->id])){
-    		$cart[$product->id]++;
-	    }else{
-	    	$cart[$product->id] = 1;
-	    }
-
+    	$cart = Cart::addProduct($product);
 	    return back()->withCookie('cart',json_encode($cart));
     }
+
+    public function remove(Product $product)
+    {
+    	$cart = Cart::removeProduct($product);
+    	return back()->withCookie('cart',json_encode($cart));
+    }
+
+    public function destroy(Product $product)
+    {
+	    $cart = Cart::destroyProduct($product);
+	    return back()->withCookie('cart',json_encode($cart));
+    }
+
 }

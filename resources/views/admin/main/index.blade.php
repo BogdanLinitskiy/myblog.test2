@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="col-md-12">
+        @if($message = session('message'))
+        <div class="alert alert-success" role="alert">
+            {{$message}}
+        </div>
+        @endif
         <table class="table">
             <tr>
                 <th>id</th>
@@ -22,13 +27,20 @@
                         <ul>
                             @foreach($order->products as $product)
                                 <li>{{  $product['title']}} x {{$product->pivot->amount }}</li>
+                                <form action="/order/{{$order->id}}/{{$product->slug}}"  method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button class="btn btn-danger">X</button>
+                                </form>
                             @endforeach
                         </ul>
                     </td>
                     <td>
                         <ul>
                         @foreach($order->products as $product)
-                            <li>{{$product->pivot->amount * $product->price}}$</li>
+                            <li>
+                                {{$product->pivot->amount * $product->price}}$
+                            </li>
                         @endforeach
                         </ul>
                     </td>

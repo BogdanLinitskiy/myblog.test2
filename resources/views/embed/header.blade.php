@@ -23,6 +23,10 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/cart">Cart</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/order">Order</a>
             </li>
 

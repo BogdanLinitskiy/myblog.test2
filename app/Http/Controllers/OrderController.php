@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
@@ -11,20 +12,17 @@ class OrderController extends Controller
 {
     public function create()
     {
-    	$cart = json_decode(request()->cookie('cart'),true);
+    	$cart = Cart::getCartArray();
     	if(count($cart)<1){
     		return redirect('/products');
 	    }
-	    $products =[];
-    	foreach ($cart as $productID =>$amount){
-    		$products[] = Product::find($productID);
-	    }
+	    $products =Cart::getCartProducts($cart);
     	return view('orders.create',compact('products','cart'));
     }
 
     public function store()
     {
-	    $cart = json_decode(request()->cookie('cart'),true);
+	    $cart = Cart::getCartArray();
 	    if(count($cart)<1){
 		    return redirect('/products');
 	    }
@@ -37,10 +35,11 @@ class OrderController extends Controller
 
 	    $order = Order::create(request(['user_name','email','phone']));
 
-	    foreach ($cart as $productID => $productAmount){
-	    	$order->products()->attach($productID,['amount' =>$productAmount]);
+	    foreach ($cart as $productID => $productAr){
+	    	$order->products()->attach($productID,['amount' =>$productAr['amount']]);
 	    }
 
 	    return redirect('/products')->withCookie('cart',json_encode([]));
     }
+
 }
