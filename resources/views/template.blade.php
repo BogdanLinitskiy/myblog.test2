@@ -35,6 +35,8 @@
 
     </div> <!-- /container -->
 
+    @include('embed.last_products')
+
 </main>
 
 <footer class="container">

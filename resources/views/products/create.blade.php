@@ -4,7 +4,7 @@
 
     <div class="col-md-12">
 
-        <form action="/products" method="post" class="form-horizontal">
+        <form action="/products" method="post" enctype="multipart/form-data" class="form-horizontal">
 
             @include('embed.errors')
 
@@ -14,6 +14,13 @@
 
                 <label for="title" >Title: </label>
                 <input type ="text" class="form-control" id="title" name="title">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="thumbnail" >Thumbnail: </label>
+                <input type ="file" class="form-control" id="thumbnail" name="thumbnail[]" multiple>
 
             </div>
 

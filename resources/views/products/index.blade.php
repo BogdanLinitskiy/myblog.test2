@@ -3,6 +3,7 @@
 @section('content')
 
     @foreach($products as $product)
+
         <div class="col-md-4">
             <h2>{{ $product['title'] }}</h2>
             <p> {{ $product['price'] }}$ </p>

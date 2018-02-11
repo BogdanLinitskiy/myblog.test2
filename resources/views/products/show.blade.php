@@ -4,7 +4,10 @@
 
     <div class="col-md-12">
         <h2>{{ $product['title'] }}</h2>
-        <p> {{ $product['intro'] }} </p>
+        @foreach($product->thumbnails as $thumb)
+            <img src="/uploads/{{$thumb->name}}" alt="product image" class="img-thumbnail" width="750px" height="500px">
+        @endforeach
+            <p> {{ $product['intro'] }} </p>
         <p> {{ $product['price'] }} </p>
         <p> {{ $product['description'] }} </p>
     </div>

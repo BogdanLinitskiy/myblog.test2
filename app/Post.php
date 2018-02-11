@@ -19,6 +19,11 @@ class Post extends Model
 		return $this->hasMany(Comment::class);
 //		return $this->hasMany(Comment::class,'post_id','id');
 	}
+	public function thumbnails()
+	{
+		return $this->belongsToMany(Thumbnail::class);
+	}
+
 
 //	protected $guarded = ['id'];
 }

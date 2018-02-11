@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Thumbnail;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -27,7 +28,21 @@ class ProductsController extends Controller
 		    'price' => 'required|min:1',
 		    'description' => 'required|min:20|'
 	    ]);
-	    Product::create(request(['title','slug','price','description']));
+	    $product = Product::create(request()->all());
+
+	    if(count(request()->files->get('thumbnail'))){
+		    foreach (request()->files->get('thumbnail') as $file){
+			    $file = $file->move(public_path().'/uploads/', time().'_'.$file->getClientOriginalName());
+
+			    $thumbnail = Thumbnail::create([
+			    	'name' => basename($file->getRealPath()),
+				    'size' => basename($file->getSize())
+			    ]);
+
+			    $product->thumbnails()->attach($thumbnail->id);
+		    }
+	    }
+
 	    return redirect('/products');
     }
 

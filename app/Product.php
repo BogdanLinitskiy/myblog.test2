@@ -13,8 +13,19 @@ class Product extends Model
 		return 'slug';
 	}
 
-	public function orders(){
+	public function orders()
+	{
 		return $this->belongsToMany(Order::class);
+	}
+
+	public function thumbnails()
+	{
+		return $this->belongsToMany(Thumbnail::class);
+	}
+
+	public static function lastProducts($amount)
+	{
+		return self::latest()->limit($amount)->get();
 	}
 
 }

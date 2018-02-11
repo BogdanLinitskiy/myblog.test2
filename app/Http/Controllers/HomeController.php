@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home(){
-        $data['posts'] = Post::all();
-        return view('main', $data);
+        $posts= Post::all();
+        return view('main')->with(compact('posts'));
 
 //        return view('main')->with($data);
     }
